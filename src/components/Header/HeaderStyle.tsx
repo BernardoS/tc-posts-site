@@ -7,6 +7,7 @@ export const HeaderContainer = styled.div`
     justify-content:center;
     width:100%;
     height:96px;
+    border-bottom:2px solid #FCC918;
 `;
 
 export const HeaderContent = styled.div`
