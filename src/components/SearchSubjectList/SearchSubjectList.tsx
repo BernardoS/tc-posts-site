@@ -1,4 +1,5 @@
 import { SubjectButton, SubjectList } from "./SearchSubjectListStyle";
+import { useNavigate } from "react-router-dom";
 
 interface SubjectListProps {
     subjectList: string[]; // Lista de assuntos passada como props
@@ -7,11 +8,22 @@ interface SubjectListProps {
 const SubjectSearchList:React.FC<SubjectListProps>  = ( { subjectList } ) =>{
 
 
+    const navigate = useNavigate();
+
+    const handleSubjectClick = (subject:string) => {
+        if(subject){
+            navigate(`/search?term=${encodeURIComponent(subject)}`);
+        }
+    };
+
     return (
     <SubjectList className="content-container">
         {
             subjectList.map((subject, index) => (
-            <SubjectButton key={index} className="subject-button">
+            <SubjectButton 
+                onClick={() => handleSubjectClick(subject)}
+                key={index} 
+                className="subject-button">
                 {subject}
             </SubjectButton>))
         }
