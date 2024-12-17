@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 // Componentes das Páginas
 import Home from '../pages/Home/Home';
 import NotFound from '../pages/NotFound/NotFound';
+import SearchPosts from '../pages/SearchPosts/SearchPosts';
 
 // Componente para rotas privadas
 const PrivateRoute = ({ children, isAuthenticated }: { children: React.ReactNode; isAuthenticated: boolean }) => {
@@ -21,7 +22,7 @@ const MainRouter = () => {
         {/* Rotas Públicas */}
          {/* Rotas Públicas */}
         <Route path="/" element={<Home/>} />
-        <Route path="/search:term" element={<h1>Search</h1>} />
+        <Route path="/search" element={<SearchPosts/>} />
         <Route path="/post/:id" element={<h1>Read Post</h1>} />
         <Route path="/login" element={<h1>Login</h1>} />
        
@@ -44,7 +45,7 @@ const MainRouter = () => {
         />
 
         {/* Rota para páginas não encontradas */}
-        <Route path="*" element={<NotFound />} />
+        {/*<Route path="*" element={<NotFound />} />*/}
       </Routes>
     </Router>
   );
