@@ -4,6 +4,7 @@ import NotFound from '../pages/NotFound/NotFound';
 import SearchPosts from '../pages/SearchPosts/SearchPosts';
 import Login from '../pages/Login/Login';
 import PrivateRoute from './PrivateRoute';
+import ReadPost from '../pages/ReadPost/ReadPost';
 
 
 const MainRouter = () => {
@@ -15,7 +16,7 @@ const MainRouter = () => {
          {/* Rotas Públicas */}
         <Route path="/" element={<Home/>} />
         <Route path="/search" element={<SearchPosts/>} />
-        <Route path="/post/:id" element={<h1>Read Post</h1>} />
+        <Route path="/post/:id" element={<ReadPost/>} />
         <Route path="/login" element={<Login/>} />
        
         {/* Rotas Privadas */}
