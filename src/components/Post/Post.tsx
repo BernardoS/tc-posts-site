@@ -16,6 +16,9 @@ interface PostCardProps {
 }
 
 const Post: React.FC<PostCardProps> = ({ id, title, subjects, coverImage }) => {
+
+  
+
   return (
     <PostCard id={id} >
       <PostCardImage src={coverImage} alt={title} className="post-card-image" />

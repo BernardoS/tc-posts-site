@@ -5,38 +5,37 @@ import {
 } from "./PostListStyle";
 
 interface iPost {
-    id: string; // ID do post
-    title: string; // Título do post
-    subjects: string[]; // Matérias relacionadas
-    coverImage: string; // URL da imagem de capa
+    _id: string;
+    title: string;
+    description: string;
+    content: string;
+    author: string;
+    modifyDate: string;
+    createdAt: string;
+    updatedAt: string;
+    __v: number;
   }
 
-const PostList = () => {
+interface PostCardProps {
+    postList: iPost[]
+}
 
-    const [posts, setPosts] = useState<iPost[]>([]);
+const PostList: React.FC<PostCardProps> = ({postList}) => {
 
     useEffect(()=>{
-        //Substituir new posts pela chamada a api e listagem dos posts
-        const newPost = {
-            id:"1",
-            subjects : ["Geografia","Matemática"],
-            title : "O que é latitude e longitude ?",
-            coverImage : "https://www.s4d4c.eu/wp-content/uploads/2020/12/geography-600x400.jpg"
-        };
-
-        const postList = [...posts, newPost];
-        
-        setPosts(postList);
-    },[])
-
+       setPosts(postList);
+    },[postList])
+     
+    const [posts, setPosts] = useState<iPost[]>([]);
 
     return (
         <PostListContainer className="content-container">
            {posts.map((p)=>(
                 <Post 
-                    id={p.id} 
-                    coverImage={p.coverImage}
-                    subjects={p.subjects} 
+                    key = {p._id}
+                    id={p._id} 
+                    coverImage={"https://www.s4d4c.eu/wp-content/uploads/2020/12/geography-600x400.jpg"}
+                    subjects={["Geografia","Matemática"]} 
                     title={p.title}
                 />
            ))}

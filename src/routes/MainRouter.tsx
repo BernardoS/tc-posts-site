@@ -1,32 +1,47 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 //import PrivateRoute from './PrivateRoute';
 
 // Componentes das Páginas
-import HomePage from '../pages/Home/Home';
+import Home from '../pages/Home/Home';
 import NotFound from '../pages/NotFound/NotFound';
 
+// Componente para rotas privadas
+const PrivateRoute = ({ children, isAuthenticated }: { children: React.ReactNode; isAuthenticated: boolean }) => {
+  return isAuthenticated ? children : <Navigate to="/login" />;
+};
 
 const MainRouter = () => {
-  // Simula o estado de autenticação (substitua pelo seu contexto ou lógica real)
-  //const isAuthenticated = true; // Substitua por lógica de autenticação real
+  const isAuthenticated = false;
+
 
   return (
     <Router>
       <Routes>
         {/* Rotas Públicas */}
-        <Route path="/" element={<HomePage />} />
-        {/*<Route path="/login" element={<LoginPage />} />*/}
-
-        {/* Rotas Privadas 
+         {/* Rotas Públicas */}
+        <Route path="/" element={<Home/>} />
+        <Route path="/search:term" element={<h1>Search</h1>} />
+        <Route path="/post/:id" element={<h1>Read Post</h1>} />
+        <Route path="/login" element={<h1>Login</h1>} />
+       
+        {/* Rotas Privadas */}
         <Route
-          path="/dashboard"
+          path="/manage"
           element={
             <PrivateRoute isAuthenticated={isAuthenticated}>
-              <Dashboard />
+              <h1>Post Manager</h1>
             </PrivateRoute>
           }
-        />*/}
+        />
+        <Route
+          path="/save"
+          element={
+            <PrivateRoute isAuthenticated={isAuthenticated}>
+              <h1>Post Editor</h1>
+            </PrivateRoute>
+          }
+        />
 
         {/* Rota para páginas não encontradas */}
         <Route path="*" element={<NotFound />} />

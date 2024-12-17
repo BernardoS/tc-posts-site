@@ -21,8 +21,8 @@ export const LoginButon = styled.button`
     width: 240px;
     height:50px;
     border-radius:10px;
-    border:1px solid #FCC918;
-    background-color: transparent;
+    border:2px solid #FCC918;
+    background-color: #08244B;
     transition:0.3s;
     color:#FCC918;
     display:flex;
@@ -35,7 +35,7 @@ export const LoginButon = styled.button`
     font-family: "Maven Pro", sans-serif;
     cursor:pointer;
     &:hover{
-        background-color:#08244B;
+        background-color:transparent;
     }
 `;
 

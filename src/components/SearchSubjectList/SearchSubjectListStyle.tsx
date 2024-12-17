@@ -14,7 +14,7 @@ export const SubjectList = styled.div`
 export const SubjectButton = styled.a`
     background-color: #FCC918;
     color: #1E4071;
-    border: 1px solid #1E4071;
+    border: 0px solid #1E4071;
     border-radius: 25px; 
     padding: 10px 20px;
     font-size: 16px;
@@ -29,7 +29,7 @@ export const SubjectButton = styled.a`
     &:hover{
         background-color:#08244B;
         color:#FCC918;
-        border: 1px solid #FCC918;
+        border: 0px solid #FCC918;
 
     }
 
