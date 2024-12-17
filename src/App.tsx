@@ -1,8 +1,11 @@
-import MainRouter from './routes/MainRouter'
+import MainRouter from './routes/MainRouter';
+import { AuthProvider } from './contexts/AuthContext';
 
 function App() {
   return (
-    <MainRouter/>
+    <AuthProvider>
+      <MainRouter/>
+    </AuthProvider>
   )
 }
 
