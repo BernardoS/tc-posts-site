@@ -17,6 +17,7 @@ import {
     ObservationText,
     PostBannerNotFound
  } from "./ReadPostStyle";
+import { useParams } from "react-router-dom";
 
 
  interface iPost {
@@ -31,11 +32,10 @@ import {
     __v: number;
 }
 
-interface PostProps {
-    id: string; // ID do post
-}
 
-const ReadPost: React.FC<PostProps> = ({id}) =>{
+const ReadPost = () =>{
+
+    const { id } = useParams<{ id: string }>();
 
     //TO DO:  Inserir no useEffect que recupera os dados do post através do Id
 
