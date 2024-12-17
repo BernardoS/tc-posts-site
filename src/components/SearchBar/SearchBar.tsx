@@ -10,7 +10,7 @@ import { useState } from "react";
     
 
 
-
+//TO DO: Receber como parâmetro as funções handleSearch e handleInputSearch
 const SearchBar = () => {
     
     const [searchTerm,setSearchTerm] = useState<string>('');

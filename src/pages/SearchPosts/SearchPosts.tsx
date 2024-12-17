@@ -20,21 +20,22 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 
 
+const subjects: string[] = [
+  "Geografia",
+  "Química",
+  "Português",
+  "Biologia",
+  "Física",
+  "Inglês",
+  "História",
+  "Matemática",
+];
+
+
 const SearchPosts  = () => {
 
     const [searchParams] = useSearchParams();
     const term = searchParams.get('term');
-
-    const subjects: string[] = [
-        "Geografia",
-        "Química",
-        "Português",
-        "Biologia",
-        "Física",
-        "Inglês",
-        "História",
-        "Matemática",
-    ];
 
     interface iPost {
         _id: string;

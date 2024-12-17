@@ -18,6 +18,18 @@ import PostList from "../../components/PostList/PostList";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
+interface iPost {
+    _id: string;
+    title: string;
+    description: string;
+    content: string;
+    author: string;
+    modifyDate: string;
+    createdAt: string;
+    updatedAt: string;
+    __v: number;
+}
+
 
 const HomePage = () => {
 
@@ -30,22 +42,9 @@ const HomePage = () => {
         "Inglês",
         "História",
         "Matemática",
-    ];
-
-    interface iPost {
-        _id: string;
-        title: string;
-        description: string;
-        content: string;
-        author: string;
-        modifyDate: string;
-        createdAt: string;
-        updatedAt: string;
-        __v: number;
-    }
+    ];    
 
       const [posts, setPosts] = useState<iPost[]>([]);
-      //const [searchTerm, setSearchTerm] = useState('');
 
       useEffect(() => {
         axios.get('http://localhost:3000/posts').then(response => {

@@ -5,6 +5,7 @@ import SearchPosts from '../pages/SearchPosts/SearchPosts';
 import Login from '../pages/Login/Login';
 import PrivateRoute from './PrivateRoute';
 import ReadPost from '../pages/ReadPost/ReadPost';
+import ManagePosts from '../pages/ManagePosts/ManagePosts';
 
 
 const MainRouter = () => {
@@ -24,7 +25,7 @@ const MainRouter = () => {
           path="/manage"
           element={
             <PrivateRoute>
-              <h1>Post Manager</h1>
+              <ManagePosts/>
             </PrivateRoute>
           }
         />
