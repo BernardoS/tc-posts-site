@@ -106,7 +106,7 @@ const ManagePosts = () => {
                     <h1 className="main-title">Área do professor</h1>
                     <SecondaryButton
                      type="button"
-                     onClick={() => navigate("/save")}
+                     onClick={() => navigate("/create")}
                      >
                         <FontAwesomeIcon icon={faPlus} />
                         Adicionar post
