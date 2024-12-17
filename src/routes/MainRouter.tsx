@@ -6,6 +6,7 @@ import Login from '../pages/Login/Login';
 import PrivateRoute from './PrivateRoute';
 import ReadPost from '../pages/ReadPost/ReadPost';
 import ManagePosts from '../pages/ManagePosts/ManagePosts';
+import SavePost from '../pages/SavePost/SavePost';
 
 
 const MainRouter = () => {
@@ -30,10 +31,18 @@ const MainRouter = () => {
           }
         />
         <Route
-          path="/save"
+          path="/edit/:id"
           element={
             <PrivateRoute>
-              <h1>Post Editor</h1>
+              <SavePost/>
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/create"
+          element={
+            <PrivateRoute>
+              <SavePost/>
             </PrivateRoute>
           }
         />
