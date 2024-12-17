@@ -16,6 +16,7 @@ import axios from "axios";
 import PostList from "../../components/PostList/PostList";
 import { SearchAlertContainer, SearchAlertTilte, SearchAlertTilteContainer } from "../SearchPosts/SearchPostsStyle";
 import { SubjectButton, SubjectList } from "../../components/SearchSubjectList/SearchSubjectListStyle";
+import { useNavigate } from "react-router-dom";
 
 
 interface iPost {
@@ -46,6 +47,7 @@ const ManagePosts = () => {
 
     const [posts, setPosts] = useState<iPost[]>([]);
     const [searchTerm, setSearchTerm] = useState<string>('');
+    const navigate = useNavigate();
 
     useEffect(() => {
         axios.get('http://localhost:3000/posts').then(response => {
@@ -102,7 +104,10 @@ const ManagePosts = () => {
             <ManagePostsContent className="content-container" >
                 <ManagePostsTitle>
                     <h1 className="main-title">Área do professor</h1>
-                    <SecondaryButton type="button">
+                    <SecondaryButton
+                     type="button"
+                     onClick={() => navigate("/save")}
+                     >
                         <FontAwesomeIcon icon={faPlus} />
                         Adicionar post
                     </SecondaryButton>
