@@ -24,6 +24,16 @@ export const PostBanner = styled.div`
     justify-content: center;
 `;
 
+export const PostBannerNotFound = styled.div`
+    background-image: url(${PostBannerImage});
+    background-size: cover;
+    background-position:center;
+    width:100%;
+    display:flex;
+    justify-content: center;
+    height:80vh;
+`;
+
 export const PostBannerContent =styled.div`
     display:flex;
     flex-direction:column;
@@ -38,6 +48,10 @@ export const ContentContainer = styled.div`
 `;
 
 export const ObservationsContainer = styled.div`
+    display:flex;
+    flex-direction:row;
+    gap:16px;
+    color: #5E6879;
 `;
 
 export const PostTitle = styled.h1`
@@ -47,9 +61,29 @@ export const PostTitle = styled.h1`
     font-weight:600;
 `;
 
+export const PostSubtitle = styled.h2`
+    font-size:32px;
+    font-weight:900;
+    color:#1E4071;
+`;
+
+export const PostText = styled.p`
+    font-size:18px;
+    color:#000000;
+
+    &.description{
+        color:#08244B
+    }
+`;
+
 export const PostInfo = styled.span`
     margin:unset;
     color:#F6F6F6;
     font-size:16px;
     font-weight:600;
+`;
+
+export const ObservationText = styled.span`
+    font-size:16px;
+    font-weight: 400;
 `;
