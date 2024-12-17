@@ -1,7 +1,7 @@
 import {
     HeaderContainer,
     HeaderContent,
-    HomeLink,
+    HomeButton,
     LoginButon
 } from "./HeaderStyle";
 
@@ -17,13 +17,17 @@ const Header = () =>{
     
     const navigate = useNavigate();
 
+    const navigateHome = () => {
+        navigate("/");
+    }
+
     return( 
     <HeaderContainer>
         <HeaderContent className="content-container">
-            <HomeLink >
+            <HomeButton type="button" onClick={navigateHome} >
                 <img src={SaibaMaisLogo}></img>
-            </HomeLink>
-            <LoginButon onClick={() => navigate(`/login`)}>
+            </HomeButton>
+            <LoginButon type="button" onClick={() => navigate(`/login`)}>
                 área do professor <FontAwesomeIcon icon={faUserGear} />
                 </LoginButon>
         </HeaderContent>  

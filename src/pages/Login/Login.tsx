@@ -1,7 +1,7 @@
 import { useState } from "react";
 import LogoLoginImage from "../../assets/logo-login-page.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
+import { faChevronLeft, faEye, faEyeSlash, faSignIn } from "@fortawesome/free-solid-svg-icons";
 import { 
     LoginContainer,
     LoginContent,
@@ -10,8 +10,18 @@ import {
     LoginSubtitle,
     LoginTitle,
     FormGroup,
-    LoginForm
+    LoginForm,
+    LogoButton,
+    InputLabel,
+    PasswordContainer,
+    EmailInput,
+    ButtonGroup
  } from "./LoginStyle";
+
+ import { 
+    PrimaryButton,
+    SecondaryButton 
+} from "../../components/Buttons/ButtonsStyles";
 
 
 const Login = () => {
@@ -25,40 +35,45 @@ const Login = () => {
     return (
         <LoginContainer>
             <LoginContent>
-                <div>
+                <LogoButton>
                     <img src={LogoLoginImage}/>
-                </div>
+                </LogoButton>
                 <WhiteSeparator/>
                 <LoginTitleContainer>
                     <LoginTitle>Área do professor</LoginTitle>
                     <LoginSubtitle>Login</LoginSubtitle>
                 </LoginTitleContainer>
                 <LoginForm>
-                    <FormGroup className="form-group">
-                        <label htmlFor="email">E-mail</label>
-                        <input type="email" id="email" placeholder="Digite seu e-mail" />
+                    <FormGroup >
+                        <InputLabel htmlFor="email">E-mail</InputLabel>
+                        <EmailInput type="email" id="email" placeholder="Digite seu e-mail" />
                     </FormGroup>
 
-                    <FormGroup className="form-group">
-                        <label htmlFor="password">Senha</label>
-                        <div className="password-container">
+                    <FormGroup >
+                        <InputLabel htmlFor="password">Senha</InputLabel>
+                        <PasswordContainer >
                             <input
                                 type={passwordVisible ? "text" : "password"}
                                 id="password"
                                 placeholder="Digite sua senha"
                             />
                             <span
-                                className="toggle-password"
+                            
                                 onClick={togglePasswordVisibility}
                             >
                                 <FontAwesomeIcon icon={passwordVisible?faEyeSlash:faEye}/>
                             </span>
-                        </div>
+                        </PasswordContainer>
                     </FormGroup>
 
-                    <div className="button-group">
-                    <button className="button-entrar">Entrar</button>
-                    </div>
+                    <ButtonGroup >
+                        <SecondaryButton className="login-page" type="button">
+                            <FontAwesomeIcon icon={faChevronLeft}/> <span>Voltar</span> 
+                        </SecondaryButton>
+                        <PrimaryButton className="login-page" type="button">
+                            <FontAwesomeIcon icon={faSignIn}/> <span>Entrar</span> 
+                        </PrimaryButton>
+                    </ButtonGroup>
                 </LoginForm>
             </LoginContent>
         </LoginContainer>

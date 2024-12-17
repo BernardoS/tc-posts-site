@@ -39,6 +39,9 @@ export const LoginButon = styled.button`
     }
 `;
 
-export const HomeLink = styled.a`
+export const HomeButton = styled.button`
     height:32px;
+    background-color:transparent;
+    border:none;
+    cursor:pointer;
 `;
