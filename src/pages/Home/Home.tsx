@@ -11,7 +11,6 @@ import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import "../../global.css";
 import SearchBar from "../../components/SearchBar/SearchBar";
-import SubjectSearchList from "../../components/SearchSubjectList/SearchSubjectList";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faList, faTableCells } from "@fortawesome/free-solid-svg-icons";
 import PostList from "../../components/PostList/PostList";
@@ -31,18 +30,7 @@ interface iPost {
 }
 
 
-const HomePage = () => {
-
-    const subjects: string[] = [
-        "Geografia",
-        "Química",
-        "Português",
-        "Biologia",
-        "Física",
-        "Inglês",
-        "História",
-        "Matemática",
-    ];    
+const HomePage = () => {  
 
       const [posts, setPosts] = useState<iPost[]>([]);
 
@@ -58,6 +46,8 @@ const HomePage = () => {
         });
       }, []);
 
+
+
     return (
         <HomePageContainer>
             <Header />
@@ -70,10 +60,9 @@ const HomePage = () => {
                         </b>
                         de todas as matérias
                     </h1>
-                    <SearchBar />
+                    <SearchBar redirectToSearch={true} />
                 </BannerContent>
             </BannerContainer>
-            <SubjectSearchList subjectList={subjects}/>
             <PostListTitleContainer className="content-container">
                 <PostListTitle>
                     Posts mais recentes

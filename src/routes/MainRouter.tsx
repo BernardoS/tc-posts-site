@@ -7,6 +7,7 @@ import PrivateRoute from './PrivateRoute';
 import ReadPost from '../pages/ReadPost/ReadPost';
 import ManagePosts from '../pages/ManagePosts/ManagePosts';
 import SavePost from '../pages/SavePost/SavePost';
+import { SearchContextProvider } from '../contexts/SearchContext';
 
 
 const MainRouter = () => {
@@ -16,8 +17,17 @@ const MainRouter = () => {
       <Routes>
         {/* Rotas Públicas */}
          {/* Rotas Públicas */}
-        <Route path="/" element={<Home/>} />
-        <Route path="/search" element={<SearchPosts/>} />
+        <Route path="/" element={
+          <SearchContextProvider>
+            <Home/>
+          </SearchContextProvider>
+          
+          } />
+        <Route path="/search" element={
+          <SearchContextProvider>
+            <SearchPosts/>
+          </SearchContextProvider>
+          } />
         <Route path="/post/:id" element={<ReadPost/>} />
         <Route path="/login" element={<Login/>} />
        

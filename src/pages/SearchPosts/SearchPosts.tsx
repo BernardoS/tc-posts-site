@@ -18,6 +18,7 @@ import axios from "axios";
 import { PostListTitle } from "../Home/HomeStyle";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
+import { useSearchContext } from "../../contexts/SearchContext";
 
 
 const subjects: string[] = [
@@ -32,78 +33,99 @@ const subjects: string[] = [
 ];
 
 
-const SearchPosts  = () => {
+interface iPost {
+  _id: string;
+  title: string;
+  description: string;
+  content: string;
+  author: string;
+  modifyDate: string;
+  createdAt: string;
+  updatedAt: string;
+  __v: number;
+}
 
-    const [searchParams] = useSearchParams();
-    const term = searchParams.get('term');
 
-    interface iPost {
-        _id: string;
-        title: string;
-        description: string;
-        content: string;
-        author: string;
-        modifyDate: string;
-        createdAt: string;
-        updatedAt: string;
-        __v: number;
-    }
 
-      const [posts, setPosts] = useState<iPost[]>([]);
-      const [searchTerm, setSearchTerm] = useState<string|undefined|null>('');
+const SearchPosts = () => {
+
+  const [searchParams] = useSearchParams();
+  const {searchTerm, updateSearchTerm} = useSearchContext();
+  const [posts,setPosts] = useState<iPost[]>([]);
+  const term = searchParams.get('term');
+  
+
+  useEffect(() => {
+    if(term){
+
+      updateSearchTerm(term);
+
+    }else{
       
+      axios.get('http://localhost:3000/posts').then(response => {
+        if (Array.isArray(response.data)) {
+          setPosts(response.data);
+        } else {
+          console.log('API response is not an array:', response.data);
+        }
+      }).catch(error => {
+        console.log('Error fetching posts:', error);
+      });
+    }
+    
+  }, []);
 
-      useEffect(() => {
+  useEffect(() => {
 
-        if(term != "" || term != null || term != undefined){
-            setSearchTerm(term);
-        }        
+    searchPosts();
 
-        setSearchTerm(term);
+  }, [searchTerm]);
 
-        axios.get(`http://localhost:3000/posts/search?q=${searchTerm}`).then(response => {
-          if (Array.isArray(response.data)) {
-            setPosts(response.data);
-          } else {
-            console.error('API response is not an array:', response.data);
-          }
-        }).catch(error => {
-          console.error('Error searching posts:', error);
-        });
+  const searchPosts = async () => {
 
-      }, [term]);
+    await axios.get(`http://localhost:3000/posts/search?q=${searchTerm}`).then(response => {
+      if (Array.isArray(response.data)) {
+        setPosts(response.data);
+      } else {
+        console.error('API response is not an array:', response.data);
+      }
+    }).catch(error => {
+      console.error('Error searching posts:', error);
+    });
+
+  }
 
 
-    return (
-        <SearchPostsContainer>
-          <Header />
-          <SearchPostsContent className="content-container">
-          
-            <SearchBar/>
-            <SubjectSearchList subjectList={subjects}/>
-            <PostListTitle>
-              Resultados de "{searchTerm}"
-            </PostListTitle>
-            {posts.length > 0 ?(
-              <PostList postList={posts} />
-            ):(
-              <SearchAlertContainer className="content-container">
-                <SearchAlertTilteContainer>
-                  <FontAwesomeIcon icon={faInfoCircle}/> 
-                  <SearchAlertTilte>Hmm... Não encontramos nada por aqui</SearchAlertTilte>
-                </SearchAlertTilteContainer>
-                <div>
-                  <p>Ops! Não encontramos nenhum post com o texto "{searchTerm}".</p>
-                  <p>Que tal tentar outra palavra-chave ou verificar se está tudo escrito corretamente?</p>
-                </div>
-              </SearchAlertContainer>
-            )}
-            
-            
-          </SearchPostsContent>
-          <Footer/>
-        </SearchPostsContainer>
-    )
+  return (
+    <SearchPostsContainer>
+      <Header />
+      <SearchPostsContent className="content-container">
+
+        <SearchBar redirectToSearch={false}  />
+        <SubjectSearchList subjectList={subjects} />
+        
+          {searchTerm == "" ? <PostListTitle>Posts disponíveis</PostListTitle>: <PostListTitle>Resultados de "{searchTerm}"</PostListTitle>}
+        
+        {posts.length > 0 ? (
+          <PostList postList={posts} />
+        ) : (
+          <SearchAlertContainer className="content-container">
+            <SearchAlertTilteContainer>
+              <FontAwesomeIcon icon={faInfoCircle} />
+              <SearchAlertTilte>Hmm... Não encontramos nada por aqui</SearchAlertTilte>
+            </SearchAlertTilteContainer>
+            <div>
+              <p>Ops! Não encontramos nenhum post com o texto "{searchTerm}".</p>
+              <p>Que tal tentar outra palavra-chave ou verificar se está tudo escrito corretamente?</p>
+            </div>
+          </SearchAlertContainer>
+        )}
+
+
+      </SearchPostsContent>
+      <Footer />
+    </SearchPostsContainer>
+  )
 
 };
 

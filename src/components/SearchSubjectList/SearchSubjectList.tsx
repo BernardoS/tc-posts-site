@@ -1,18 +1,16 @@
+import { useSearchContext } from "../../contexts/SearchContext";
 import { SubjectButton, SubjectList } from "./SearchSubjectListStyle";
-import { useNavigate } from "react-router-dom";
-
 interface SubjectListProps {
     subjectList: string[]; // Lista de assuntos passada como props
 }
 
 const SubjectSearchList:React.FC<SubjectListProps>  = ( { subjectList } ) =>{
 
-
-    const navigate = useNavigate();
+    const {updateSearchTerm} = useSearchContext();
 
     const handleSubjectClick = (subject:string) => {
         if(subject){
-            navigate(`/search?term=${encodeURIComponent(subject)}`);
+            updateSearchTerm(subject);
         }
     };
 
